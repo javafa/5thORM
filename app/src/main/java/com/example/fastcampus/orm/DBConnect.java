@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
+import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
@@ -30,5 +31,13 @@ public class DBConnect extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         // aalter table 조회수 컬럼 추가
+    }
+    // Memo 테이블에 접근하기 위한 변수
+    private Dao<Memo, Integer> memoDao = null;
+    public Dao<Memo, Integer> getMemoDao() throws Exception{ // DB오류시 호출한 측으로 Exception 전달
+        if(memoDao == null){
+            memoDao = getDao(Memo.class);
+        }
+        return memoDao;
     }
 }

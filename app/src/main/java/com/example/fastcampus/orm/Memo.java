@@ -15,4 +15,15 @@ public class Memo {
     String author;
     @DatabaseField
     long timestamp;
+
+    public Memo(){
+        // 디폴트 생성자 필수
+    }
+
+    public Memo(String title, String memo, String author, long timestamp){
+        this.title = title;
+        this.memo = memo;
+        this.author = author;
+        this.timestamp = timestamp;
+    }
 }
